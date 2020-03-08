@@ -1,0 +1,9 @@
+export const USERNAME = "username";
+export const PASSWORD = "password";
+export const REPEATED_PASSWORD = "repeatPassword";
+export const EMAIL = "email";
+export const LEGAL_AGREEMENT = "legalAgreement";
+export const SUBMIT = "submit";
+export const FORM_ID = "registrationForm";
+export const FORM_ERROR_DIV_ID = "form-errors";
+export const FORM_SUCCESS_ID = "form-success";
