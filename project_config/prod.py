@@ -2,7 +2,7 @@
 
 from .base import *
 
-DOMAIN = 'http://domain.com'
+DOMAIN = 'https://django-react-boilerplate-tut.herokuapp.com/'
 
 DEBUG = False
 ALLOWED_HOSTS += [DOMAIN]
