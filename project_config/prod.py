@@ -5,8 +5,8 @@ from .base import *
 DOMAIN = 'https://django-react-boilerplate-tut.herokuapp.com/'
 
 DEBUG = False
-ALLOWED_HOSTS += [DOMAIN]
-CORS_ORIGIN_WHITELIST += [DOMAIN]
+ALLOWED_HOSTS = [DOMAIN]
+CORS_ORIGIN_WHITELIST = [DOMAIN]
 WSGI_APPLICATION = 'project_config.wsgi.prod.application'
 
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
@@ -35,4 +35,3 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
