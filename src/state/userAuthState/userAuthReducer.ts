@@ -3,7 +3,7 @@ import {
   AUTH_TOKEN_KEY,
   USERNAME_KEY,
   LOGIN_TIME_KEY
-} from "../stateStorageKeys";
+} from "../../constants/localStorageKeys";
 
 export const initialState: userTypes.UserState = {
   username: localStorage.getItem(USERNAME_KEY),

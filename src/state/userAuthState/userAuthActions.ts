@@ -4,8 +4,8 @@ import {
   AUTH_TOKEN_KEY,
   USERNAME_KEY,
   LOGIN_TIME_KEY
-} from "../stateStorageKeys";
-import { API_LOGOUT_URL } from "../../variables/api_url";
+} from "../../constants/localStorageKeys";
+import { API_LOGOUT_URL } from "../../constants/apiUrl";
 
 export const startUserSession = (
   authToken: string,

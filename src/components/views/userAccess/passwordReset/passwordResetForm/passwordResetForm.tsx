@@ -5,8 +5,8 @@ import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
 import * as Io from "react-icons/io";
 
-import { API_PASSWORD_RESET_REQUEST } from "../../../../../variables/api_url";
-import { emailRegex } from "../../../../../variables/regex";
+import { API_PASSWORD_RESET_REQUEST } from "../../../../../constants/apiUrl";
+import { emailRegex } from "../../../../../constants/regex";
 import { EMAIL_FIELDNAME, SUBMIT, FORM_ERROR_DIV_ID } from "./fieldnames";
 import { passwordResetRequestConfirmationUrl } from "../passwordResetLinks";
 import {

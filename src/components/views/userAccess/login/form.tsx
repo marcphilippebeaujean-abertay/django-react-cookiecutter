@@ -16,7 +16,7 @@ import {
 } from "../../../utils/formUtils";
 import * as fieldNames from "./formFieldNames";
 import { register } from "../userAccessLinks";
-import { API_LOGIN_URL } from "../../../../variables/api_url";
+import { API_LOGIN_URL } from "../../../../constants/apiUrl";
 import { startUserSession } from "../../../../state/userAuthState/userAuthActions";
 import { clearAlerts } from "../../../../state/alertsState/alertActions";
 import { setLoadingAlertVisibility } from "../../../../state/alertsState/alertActions";

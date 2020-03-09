@@ -21,8 +21,8 @@ import {
   FORM_ERROR_DIV_ID
 } from "./fieldNames";
 import { UserRegistrationForm } from "./form";
-import { API_REGISTRATION_URL } from "../../../../variables/api_url";
-import { emailRegex, passwordRegex } from "../../../../variables/regex";
+import { API_REGISTRATION_URL } from "../../../../constants/apiUrl";
+import { emailRegex, passwordRegex } from "../../../../constants/regex";
 
 interface RegistrationPayload {
   username: string;

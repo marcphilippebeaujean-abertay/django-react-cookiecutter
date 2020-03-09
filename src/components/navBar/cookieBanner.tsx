@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Container, Button } from "react-bootstrap";
 
-import { COOKIE_AGREEMENT } from "../../state/stateStorageKeys";
+import { COOKIE_AGREEMENT } from "../../constants/localStorageKeys";
 
 const BannerWrapper = styled.div`
   bottom: 0;

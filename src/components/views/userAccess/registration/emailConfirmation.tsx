@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 
 import { toggleSubmitButton } from "../../../utils/formUtils";
-import { API_CONFIRM_EMAIL } from "../../../../variables/api_url";
+import { API_CONFIRM_EMAIL } from "../../../../constants/apiUrl";
 import { login } from "../../userAccess/userAccessLinks";
 import {
   setSuccessAlerts,

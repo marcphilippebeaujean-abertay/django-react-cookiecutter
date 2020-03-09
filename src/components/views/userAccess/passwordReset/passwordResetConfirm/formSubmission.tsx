@@ -8,7 +8,7 @@ import {
 } from "../../../../utils/formUtils";
 import * as fieldnames from "./fieldnames";
 import { PasswordResetForm } from "./passwordResetConfirm";
-import { API_PASSWORD_RESET_CONFIRM } from "../../../../../variables/api_url";
+import { API_PASSWORD_RESET_CONFIRM } from "../../../../../constants/apiUrl";
 import { passwordResetConfirmationUrl } from "../passwordResetLinks";
 import {
   setSuccessAlerts,
