@@ -34,3 +34,4 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project_config.base")
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 application = get_wsgi_application()
+
