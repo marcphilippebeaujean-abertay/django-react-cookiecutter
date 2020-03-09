@@ -5,7 +5,7 @@ import {
   passwordResetRequest,
   confirmResetPassword
 } from "./passwordResetLinks";
-import InitPasswordResetRequest from "./passwordResetRequest/initPasswordResetRequest";
+import InitPasswordResetRequest from "./passwordResetForm/passwordResetForm";
 import PasswordResetConfirm from "./passwordResetConfirm/passwordResetConfirm";
 
 export default () => (

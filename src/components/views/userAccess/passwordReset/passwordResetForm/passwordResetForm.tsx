@@ -78,7 +78,7 @@ export default () => {
                 className="d-none text-danger"
                 id={EMAIL_FIELDNAME + "-error"}
               >
-                Invalid Email
+                Email
               </Form.Text>
             </Form.Group>
             <Form.Group controlId="submit" className="m-0">

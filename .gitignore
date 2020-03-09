@@ -81,7 +81,9 @@ target/
 ### Django ###
 *.log
 *.pyc
+*.json
 local_settings.py
+db.sqlite3
 migrations/
 static/
 
@@ -90,6 +92,5 @@ build/
 node_modules/
 *.log
 
-*.json
-
-db.sqlite3
+# heroku
+*.env
