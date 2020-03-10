@@ -1,15 +1,7 @@
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-vc5w$d3lzz4eb5p@etjdrmms&@@09t$vstbed^-h_+j^su^e'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if os.environ.get('IS_PROD') == 'FALSE' else False
-
-ALLOWED_HOSTS = ['*']
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir))
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -57,9 +49,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'project_config.urls'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'example@mail.com'
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -91,15 +80,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'project_config.wsgi.base.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

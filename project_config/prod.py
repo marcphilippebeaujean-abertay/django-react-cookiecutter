@@ -2,7 +2,7 @@
 
 from .base import *
 
-DOMAIN = 'https://django-react-boilerplate-tut.herokuapp.com/'
+DOMAIN = 'https://*.herokuapp.com/'
 
 DEBUG = False
 ALLOWED_HOSTS = [DOMAIN]
@@ -17,6 +17,8 @@ EMAIL_HOST_PASSWORD = os.environ.get('AWS_SES_PASSWORD')
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = os.environ.get('SENDING_EMAIL')
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -27,11 +29,4 @@ DATABASES = {
         'PORT': os.environ.get('DATABASE_PORT'),
     }
 }
-
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]
 
