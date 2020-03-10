@@ -1,12 +1,12 @@
-'''Use this for production'''
-
 from .base import *
 
 DOMAIN = 'https://*.herokuapp.com/'
 
 DEBUG = False
+
 ALLOWED_HOSTS = [DOMAIN]
-CORS_ORIGIN_WHITELIST = [DOMAIN]
+CORS_ORIGIN_WHITELIST = []
+
 WSGI_APPLICATION = 'project_config.wsgi.prod.application'
 
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
@@ -29,4 +29,3 @@ DATABASES = {
         'PORT': os.environ.get('DATABASE_PORT'),
     }
 }
-

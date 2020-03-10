@@ -1,7 +1,0 @@
-{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello {{ user_display }}!
-
-Please click on the following link to activate your account: {{ activate_url }}. If you do not recall signing up, please ignore this email.
-{% endblocktrans %}
-{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from {{ site_name }}!
-{{ site_domain }}{% endblocktrans %}
-{% endautoescape %}
