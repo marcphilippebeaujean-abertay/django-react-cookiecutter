@@ -1,11 +1,10 @@
 from .base import *
 
-DOMAIN = 'https://django-react-boilerplate-tut.herokuapp.com/'
+DOMAIN = '*' # TODO: change to your domain
 
 DEBUG = False
 
 ALLOWED_HOSTS = [DOMAIN]
-CORS_ORIGIN_WHITELIST = [DOMAIN]
 
 WSGI_APPLICATION = 'project_config.wsgi.prod.application'
 
