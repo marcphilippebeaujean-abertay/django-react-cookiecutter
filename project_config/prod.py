@@ -1,6 +1,6 @@
 from .base import *
 
-DOMAIN = 'herokuapp.com'
+DOMAIN = 'https://django-react-boilerplate-tut.herokuapp.com/'
 
 DEBUG = False
 
