@@ -3,7 +3,7 @@ from .base import *
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_WHITELIST = ['*']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'http://127.0.0.1:3000']
 
 WSGI_APPLICATION = 'project_config.wsgi.dev.application'
 

@@ -1,11 +1,11 @@
 from .base import *
 
-DOMAIN = 'https://*.herokuapp.com/'
+DOMAIN = 'herokuapp.com'
 
 DEBUG = False
 
 ALLOWED_HOSTS = [DOMAIN]
-CORS_ORIGIN_WHITELIST = []
+CORS_ORIGIN_WHITELIST = [DOMAIN]
 
 WSGI_APPLICATION = 'project_config.wsgi.prod.application'
 
