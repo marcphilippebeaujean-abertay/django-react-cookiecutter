@@ -1,0 +1,3 @@
+{
+  "note":  "This is a dummy file because heroku requires you to have a package json file in the root or otherwise won't let you use node js and yarn. Delete it if you are not using Heroku."
+}
