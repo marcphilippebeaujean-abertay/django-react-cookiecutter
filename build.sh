@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 yarn install
 yarn build
-ll
 pip3 install -r requirements.txt
 if ! yes yes | python3 manage.py test; then
   echo "Tests failed."

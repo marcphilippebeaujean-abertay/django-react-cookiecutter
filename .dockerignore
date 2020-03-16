@@ -1,0 +1,7 @@
+/node_modules
+/build
+/venv
+*.sqlite3
+*.gitignore
+/.git
+
