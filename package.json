@@ -15,7 +15,7 @@
     "django-react-csrftoken": "^1.0.4",
     "formik": "^2.0.8",
     "history": "^4.10.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "node-sass": "^4.13.0",
     "query-string": "^6.9.0",
     "react": "^16.12.0",
