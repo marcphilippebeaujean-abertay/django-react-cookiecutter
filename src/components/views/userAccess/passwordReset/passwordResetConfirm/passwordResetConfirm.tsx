@@ -20,7 +20,7 @@ export default () => {
     [fieldnames.NEW_PASSWORD_2]: ""
   });
 
-  const updateFormElement = (e: React.FormEvent<HTMLInputElement>) =>
+  const updateFormElement = (e: React.ChangeEvent<HTMLInputElement>) =>
     handleInputChange(e, passwordResetState, setPasswordResetState);
   const dispatch = useDispatch();
   return (
@@ -29,7 +29,7 @@ export default () => {
         <Card.Body>
           <Card.Title>Request Password Reset</Card.Title>
           <Form
-            onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+            onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
               handleSubmit(e, passwordResetState, dispatch);
             }}
           >

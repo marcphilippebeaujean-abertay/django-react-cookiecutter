@@ -32,7 +32,7 @@ export default () => {
     [fieldNames.USERNAME]: ""
   });
   const dispatch = useDispatch();
-  const updateFormElement = (e: React.FormEvent<HTMLInputElement>) =>
+  const updateFormElement = (e: React.ChangeEvent<HTMLInputElement>) =>
     handleInputChange(e, userDetails, setUserDetails);
   return (
     <FormWrapper>
@@ -40,7 +40,7 @@ export default () => {
         <Card.Body>
           <Card.Title>Login</Card.Title>
           <Form
-            onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+            onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
               e.preventDefault();
               hideAllInputErrorMessages([
                 fieldNames.USERNAME,

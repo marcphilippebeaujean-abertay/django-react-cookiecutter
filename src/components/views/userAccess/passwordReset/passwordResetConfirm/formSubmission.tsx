@@ -39,7 +39,7 @@ const getFaultyInputFieldNames = (formState: PasswordResetForm) => {
 };
 
 export default (
-  event: React.FormEvent<HTMLFormElement>,
+  event: React.ChangeEvent<HTMLFormElement>,
   formInputValues: PasswordResetForm,
   reduxActionDispatch: Function
 ) => {

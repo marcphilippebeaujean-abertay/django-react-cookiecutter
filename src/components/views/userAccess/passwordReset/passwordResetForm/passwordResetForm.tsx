@@ -24,7 +24,7 @@ export default () => {
         <Card.Body>
           <Card.Title>Request Password Reset</Card.Title>
           <Form
-            onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+            onSubmit={(event: React.ChangeEvent<HTMLFormElement>) => {
               event.preventDefault();
               const submitBtn = document.getElementById(
                 SUBMIT
@@ -68,7 +68,7 @@ export default () => {
                   type="email"
                   placeholder="Enter email"
                   value={email}
-                  onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setEmail(e.currentTarget.value)
                   }
                 />

@@ -1,5 +1,5 @@
 export const handleInputChange = (
-  event: React.FormEvent<HTMLInputElement>,
+  event: React.ChangeEvent<HTMLInputElement>,
   formData: Object,
   setFormData: Function
 ) => {

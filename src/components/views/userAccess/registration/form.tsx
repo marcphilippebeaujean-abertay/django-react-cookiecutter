@@ -36,7 +36,7 @@ export default () => {
     [EMAIL]: "",
     [LEGAL_AGREEMENT]: false
   });
-  const updateFormElement = (e: React.FormEvent<HTMLInputElement>) =>
+  const updateFormElement = (e: React.ChangeEvent<HTMLInputElement>) =>
     handleInputChange(e, formData, setFormData);
   const dispatch = useDispatch();
   return (
@@ -46,7 +46,7 @@ export default () => {
           <Card.Title>Register</Card.Title>
           <Form
             id={FORM_ID}
-            onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+            onSubmit={(e: React.ChangeEvent<HTMLFormElement>) =>
               handleSubmit(e, formData, dispatch)
             }
           >
