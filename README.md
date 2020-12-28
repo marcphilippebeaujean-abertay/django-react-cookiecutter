@@ -16,4 +16,4 @@
 
 ## Deployment Guide
 
-[https://byteschool.io/post/deploying-my-django-react-boilerplate-to-heroku](Available Here)
+https://byteschool.io/post/deploying-my-django-react-boilerplate-to-heroku
