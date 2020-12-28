@@ -87,7 +87,7 @@ export default (
         );
       })
       .catch((error: any) =>
-        displayServerErrorMessagesInErrorDiv(FORM_ERROR_DIV_ID, error.reponse)
+        displayServerErrorMessagesInErrorDiv(FORM_ERROR_DIV_ID, error.response)
       )
       .finally(() =>
         reduxActionDispatch(removePendingApiCall(API_REGISTRATION_URL))
