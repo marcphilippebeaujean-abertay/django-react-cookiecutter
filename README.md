@@ -13,3 +13,7 @@
 * Configurations for production and local development
 * Email setup for AWS
 * Heroku Setup (works out of the box)
+
+## Deployment Guide
+
+[https://byteschool.io/post/deploying-my-django-react-boilerplate-to-heroku](Available Here)
