@@ -12,3 +12,4 @@
 * Build script for fast deployment and integration of the frontend files in the backend
 * Configurations for production and local development
 * Email setup for AWS
+* Heroku Setup (works out of the box)
