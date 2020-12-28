@@ -4,7 +4,7 @@ export const initialState: alertTypes.AlertState = {
   successAlerts: [],
   negativeAlerts: [],
   lastAlertUrlPath: "",
-  loadingAlertState: "loaded"
+  pendingApiCalls: []
 };
 
 export default (
@@ -13,7 +13,8 @@ export default (
     | alertTypes.ClearAllAlerts
     | alertTypes.SetNegativeAlerts
     | alertTypes.SetSuccessAlerts
-    | alertTypes.SetLoadingAlertVisibility
+    | alertTypes.AddPendingApiCall
+    | alertTypes.RemovePendingApiCall
 ): alertTypes.AlertState => {
   switch (action.type) {
     case alertTypes.SET_NEGATIVE_ALERTS:
@@ -28,13 +29,18 @@ export default (
         lastAlertUrlPath: document.location.pathname,
         successAlerts: action.payload
       };
-    case alertTypes.SET_LOADING_ALERT_VISIBILITY:
-      return {
-        ...previousState,
-        loadingAlertState: action.showAlert
-      };
     case alertTypes.CLEAR_ALERTS:
       return initialState;
+    case alertTypes.ADD_PENDING_API_CALL:
+      return {
+        ...previousState,
+        pendingApiCalls: [...previousState.pendingApiCalls, action.apiCallId]
+      }
+      case alertTypes.REMOVE_PENDING_API_CALL:
+        return {
+          ...previousState,
+          pendingApiCalls: previousState.pendingApiCalls.filter(x => x !== action.apiCallId)
+        }
   }
   return previousState;
 };

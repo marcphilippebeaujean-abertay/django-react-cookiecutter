@@ -9,7 +9,8 @@ import { API_CONFIRM_EMAIL } from "../../../../constants/apiUrl";
 import { login } from "../../userAccess/userAccessLinks";
 import {
   setSuccessAlerts,
-  setLoadingAlertVisibility
+  addPendingApiCall,
+  removePendingApiCall
 } from "../../../../state/alertsState/alertActions";
 
 const buttonId = "confirmation-btn";
@@ -29,7 +30,7 @@ export default () => {
           const messageDiv = document.getElementById(
             messageDivId
           ) as HTMLElement;
-          dispatch(setLoadingAlertVisibility("loading"));
+          dispatch(addPendingApiCall(API_CONFIRM_EMAIL));
           axios
             .post(API_CONFIRM_EMAIL, {
               key: confirmationToken
@@ -48,7 +49,7 @@ export default () => {
                 `<small class="text-danger form-text">Your token is invalid/has expired.</small>`
               );
             })
-            .finally(() => dispatch(setLoadingAlertVisibility("finishing")));
+            .finally(() => dispatch(removePendingApiCall(API_CONFIRM_EMAIL)));
         }}
       >
         Confirm Email

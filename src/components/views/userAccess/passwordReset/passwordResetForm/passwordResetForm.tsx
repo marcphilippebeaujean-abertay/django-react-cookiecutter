@@ -5,13 +5,14 @@ import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
 import * as Io from "react-icons/io";
 
-import { API_PASSWORD_RESET_REQUEST } from "../../../../../constants/apiUrl";
+import { API_PASSWORD_RESET_REQUEST } from '../../../../../constants/apiUrl';
 import { emailRegex } from "../../../../../constants/regex";
 import { EMAIL_FIELDNAME, SUBMIT, FORM_ERROR_DIV_ID } from "./fieldnames";
 import { passwordResetRequestConfirmationUrl } from "../passwordResetLinks";
 import {
   setSuccessAlerts,
-  setLoadingAlertVisibility
+  addPendingApiCall,
+  removePendingApiCall
 } from "../../../../../state/alertsState/alertActions";
 import FormWrapper from "../../formWrapper";
 
@@ -36,7 +37,7 @@ export default () => {
                 return;
               }
               submitBtn.disabled = true;
-              dispatch(setLoadingAlertVisibility("loading"));
+              dispatch(addPendingApiCall(API_PASSWORD_RESET_REQUEST));
               axios
                 .post(API_PASSWORD_RESET_REQUEST, {
                   email: email
@@ -52,7 +53,7 @@ export default () => {
                 .catch(e => console.log(e))
                 .finally(() => {
                   submitBtn.disabled = false;
-                  dispatch(setLoadingAlertVisibility("finishing"));
+                  dispatch(removePendingApiCall(API_PASSWORD_RESET_REQUEST));
                 });
             }}
           >

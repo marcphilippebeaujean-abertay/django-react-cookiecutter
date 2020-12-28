@@ -19,7 +19,7 @@ import { register } from "../userAccessLinks";
 import { API_LOGIN_URL } from "../../../../constants/apiUrl";
 import { startUserSession } from "../../../../state/userAuthState/userAuthActions";
 import { clearAlerts } from "../../../../state/alertsState/alertActions";
-import { setLoadingAlertVisibility } from "../../../../state/alertsState/alertActions";
+import { addPendingApiCall, removePendingApiCall } from "../../../../state/alertsState/alertActions";
 
 interface UserLoginDetails {
   [fieldNames.PASSWORD]: string;
@@ -64,7 +64,7 @@ export default () => {
               (document.getElementById(
                 fieldNames.FORM_ERROR_DIV_ID
               ) as HTMLElement).innerHTML = "";
-              dispatch(setLoadingAlertVisibility("loading"));
+              dispatch(addPendingApiCall(API_LOGIN_URL));
               axios
                 .post(API_LOGIN_URL, {
                   username: userDetails[fieldNames.USERNAME],
@@ -90,7 +90,7 @@ export default () => {
                   submitBtn.disabled = false;
                 })
                 .finally(() =>
-                  dispatch(setLoadingAlertVisibility("finishing"))
+                  dispatch(removePendingApiCall(API_LOGIN_URL))
                 );
             }}
           >

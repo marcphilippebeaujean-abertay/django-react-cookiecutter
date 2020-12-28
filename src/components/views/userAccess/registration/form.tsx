@@ -20,6 +20,10 @@ import {
 } from "./fieldNames";
 import { login } from "../userAccessLinks";
 
+
+/**
+ * Registration payload to register a new user with the form
+ */
 export interface UserRegistrationForm {
   [USERNAME]: string;
   [PASSWORD]: string;
@@ -28,6 +32,9 @@ export interface UserRegistrationForm {
   [LEGAL_AGREEMENT]: boolean;
 }
 
+/**
+ * Form Body
+ */
 export default () => {
   const [formData, setFormData] = useState<UserRegistrationForm>({
     [USERNAME]: "",

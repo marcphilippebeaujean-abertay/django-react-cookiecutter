@@ -24,11 +24,21 @@ export const clearAlerts = (): types.ClearAllAlerts => {
   };
 };
 
-export const setLoadingAlertVisibility = (
-  showLoadingAlert: types.LOADING_STATES
-): types.SetLoadingAlertVisibility => {
+
+export const addPendingApiCall = (
+  newApiCallId: string
+): types.AddPendingApiCall => {
   return {
-    type: types.SET_LOADING_ALERT_VISIBILITY,
-    showAlert: showLoadingAlert
+    type: types.ADD_PENDING_API_CALL,
+    apiCallId: newApiCallId
+  };
+};
+
+export const removePendingApiCall = (
+  removeApiCallId: string
+): types.RemovePendingApiCall => {
+  return {
+    type: types.REMOVE_PENDING_API_CALL,
+    apiCallId: removeApiCallId
   };
 };

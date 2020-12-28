@@ -1,6 +1,7 @@
 export const SET_SUCCESS_ALERTS = "setSuccessAlerts";
 export const SET_NEGATIVE_ALERTS = "setNegativeAlerts";
-export const SET_LOADING_ALERT_VISIBILITY = "setLoadingAlertVisibility";
+export const ADD_PENDING_API_CALL = "addPendingApiCall";
+export const REMOVE_PENDING_API_CALL = "removePendingApiCall";
 export const CLEAR_ALERTS = "clearAlerts";
 
 export type LOADING_STATES = "loading" | "loaded" | "finishing";
@@ -9,7 +10,7 @@ export interface AlertState {
   successAlerts: Array<String>;
   negativeAlerts: Array<String>;
   lastAlertUrlPath: string;
-  loadingAlertState: LOADING_STATES;
+  pendingApiCalls: Array<String>;
 }
 
 export interface SetSuccessAlerts {
@@ -26,7 +27,12 @@ export interface ClearAllAlerts {
   type: typeof CLEAR_ALERTS;
 }
 
-export interface SetLoadingAlertVisibility {
-  type: typeof SET_LOADING_ALERT_VISIBILITY;
-  showAlert: LOADING_STATES;
+export interface AddPendingApiCall {
+  type: typeof ADD_PENDING_API_CALL;
+  apiCallId: string;
+}
+
+export interface RemovePendingApiCall {
+  type: typeof REMOVE_PENDING_API_CALL;
+  apiCallId: string;
 }

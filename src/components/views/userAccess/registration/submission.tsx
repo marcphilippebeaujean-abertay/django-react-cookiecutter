@@ -3,7 +3,8 @@ import { push } from "connected-react-router";
 import { login } from "../userAccessLinks";
 import {
   setSuccessAlerts,
-  setLoadingAlertVisibility
+  addPendingApiCall,
+  removePendingApiCall
 } from "../../../../state/alertsState/alertActions";
 
 import {
@@ -48,6 +49,9 @@ const getFaultyInputFieldNames = (formState: UserRegistrationForm) => {
   return faultyInputFieldNames;
 };
 
+/**
+ * Handle submission of the Form
+ */
 export default (
   event: React.FormEvent<HTMLFormElement>,
   formInputValues: UserRegistrationForm,
@@ -71,7 +75,7 @@ export default (
     };
     toggleSubmitButton(SUBMIT);
     (document.getElementById(FORM_ERROR_DIV_ID) as HTMLElement).innerHTML = "";
-    reduxActionDispatch(setLoadingAlertVisibility("loading"));
+    reduxActionDispatch(addPendingApiCall(API_REGISTRATION_URL));
     axios
       .post(API_REGISTRATION_URL, registrationPayload)
       .then(response => {
@@ -86,7 +90,7 @@ export default (
         displayServerErrorMessagesInErrorDiv(FORM_ERROR_DIV_ID, error.reponse)
       )
       .finally(() =>
-        reduxActionDispatch(setLoadingAlertVisibility("finishing"))
+        reduxActionDispatch(removePendingApiCall(API_REGISTRATION_URL))
       );
   }
 };

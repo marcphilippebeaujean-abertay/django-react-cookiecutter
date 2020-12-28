@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { ProgressBar } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { useAlertsSelector } from "../../state/typedSelectors";
-import { LOADING_STATES } from "../../state/alertsState/alertTypes";
-import { setLoadingAlertVisibility } from "../../state/alertsState/alertActions";
 
 const ProgressBarStyle = styled.div`
   width: 100%;
@@ -27,21 +24,30 @@ const barPercentIncreaseLoop = (
 };
 
 export default () => {
-  const [previousLoadingState, setPreviousLoadingState] = useState<
-    LOADING_STATES
-  >("loaded");
+  const [previousApiCallsPending, setPreviousApiCallsPending] = useState<
+    Number
+  >(0);
   const [currentBarPercent, setCurrentBarPercent] = useState(0);
 
-  const dispatch = useDispatch();
+  const numPendingApiCalls = useAlertsSelector(state => state.alertsReducer.pendingApiCalls.length);
 
-  const { loadingAlertState } = useAlertsSelector(state => state.alertsReducer);
-
-  if (loadingAlertState !== previousLoadingState) {
-    setPreviousLoadingState(loadingAlertState);
+  let loadingState;
+  if(numPendingApiCalls === 0 &&
+    numPendingApiCalls !== previousApiCallsPending) {
+    loadingState = "finishing";
+  } else {
+    if(numPendingApiCalls > 0) {
+      loadingState = "loading";
+    } else {
+      loadingState = "loaded";
+    }
+    if(numPendingApiCalls !== previousApiCallsPending) {
+      setPreviousApiCallsPending(numPendingApiCalls);
+    }
   }
 
   let targetBarPercent = 0;
-  switch (previousLoadingState) {
+  switch (loadingState) {
     case "loading":
       targetBarPercent = 80;
       setTimeout(
@@ -55,9 +61,10 @@ export default () => {
       );
       break;
     case "finishing":
-      if (currentBarPercent < 100) {
+      if (currentBarPercent < 100 &&
+          currentBarPercent > 0) {
         setTimeout(() => {
-          dispatch(setLoadingAlertVisibility("loaded"));
+          setPreviousApiCallsPending(0);
         }, 300);
         targetBarPercent = 100;
         setCurrentBarPercent(100);

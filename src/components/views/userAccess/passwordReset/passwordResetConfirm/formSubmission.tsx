@@ -12,7 +12,8 @@ import { API_PASSWORD_RESET_CONFIRM } from "../../../../../constants/apiUrl";
 import { passwordResetConfirmationUrl } from "../passwordResetLinks";
 import {
   setSuccessAlerts,
-  setLoadingAlertVisibility
+  addPendingApiCall,
+  removePendingApiCall
 } from "../../../../../state/alertsState/alertActions";
 
 interface PasswordResetPayload {
@@ -70,7 +71,7 @@ export default (
     (document.getElementById(
       fieldnames.FORM_ERROR_DIV_ID
     ) as HTMLElement).innerHTML = "";
-    setLoadingAlertVisibility("loading");
+    addPendingApiCall(API_PASSWORD_RESET_CONFIRM);
     axios
       .post(API_PASSWORD_RESET_CONFIRM, passwordResetPayload)
       .then(response => {
@@ -87,7 +88,7 @@ export default (
       })
       .finally(() => {
         submitBtn.disabled = false;
-        setLoadingAlertVisibility("finishing");
+        removePendingApiCall(API_PASSWORD_RESET_CONFIRM);
       });
   }
 };
