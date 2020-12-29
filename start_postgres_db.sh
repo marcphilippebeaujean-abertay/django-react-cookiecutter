@@ -1,0 +1,1 @@
+docker run --name django-postgres -p 3306:5432 -e POSTGRES_DB=django_db -e POSTGRES_PASSWORD=mysecretpassword -d postgres

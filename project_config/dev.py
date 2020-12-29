@@ -3,7 +3,7 @@ from .base import *
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'http://127.0.0.1:3000']
+CORS_ORIGIN_ALLOW_ALL = True
 
 WSGI_APPLICATION = 'project_config.wsgi.dev.application'
 
@@ -14,7 +14,11 @@ SECRET_KEY = '-vc5w$d3lzz4eb5p@etjdrmms&@@09t$vstbed^-h_+j^su^e'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'tenant_schemas.postgresql_backend',
+        'NAME': 'django_db',
+        'USER': 'postgres',
+        'PASSWORD': 'mysecretpassword',
+        'HOST': '0.0.0.0',
+        'PORT': '3306'
     }
 }

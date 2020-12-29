@@ -2,7 +2,11 @@ import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir))
 
-INSTALLED_APPS = [
+SHARED_APPS = ['tenant_schemas', 'tenants']
+
+TENANT_MODEL = "tenants.Client"
+
+TENANT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -22,9 +26,12 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'tenant_schemas.middleware.TenantMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Whitenoise Middleware
@@ -72,6 +79,8 @@ TEMPLATES = [
         },
     },
 ]
+
+DATABASE_ROUTERS = ("tenant_schemas.routers.TenantSyncRouter",)
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'build', 'static')

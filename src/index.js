@@ -6,8 +6,11 @@ import { ConnectedRouter } from "connected-react-router";
 import configureStore, { history } from "./state/store";
 import App from "./components/App";
 import "./style/index.scss";
+import { extractTenantDomain } from "./state/userAuthState/userAuthActions";
 
 const store = configureStore();
+
+console.log(extractTenantDomain());
 
 ReactDOM.render(
   <Provider store={store}>
