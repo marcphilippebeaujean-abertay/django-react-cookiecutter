@@ -92,3 +92,35 @@ export const resetForm = (formId: string) => {
     }
   });
 };
+
+export const createButtonSpinnerId = (buttonId: string) => buttonId + "-spinner";
+
+export const disableFormButton = (buttonId: string) => {
+  const submitBtn = document.getElementById(
+    buttonId
+  ) as HTMLInputElement;
+  if(submitBtn !== null) {
+    submitBtn.disabled = true;
+    const submitSpinner = document.getElementById(
+      createButtonSpinnerId(buttonId)
+    ) as HTMLInputElement;
+    if(submitSpinner !== null) {
+      submitSpinner.classList.remove("d-none");
+    }
+  }
+}
+
+export const enableFormButton = (buttonId: string) => {
+  const submitBtn = document.getElementById(
+    buttonId
+  ) as HTMLInputElement;
+  if(submitBtn !== null) {
+    submitBtn.disabled = false;
+    const submitSpinner = document.getElementById(
+      createButtonSpinnerId(buttonId)
+    ) as HTMLInputElement;
+    if(submitSpinner !== null) {
+      submitSpinner.classList.add("d-none");
+    }
+  }
+}

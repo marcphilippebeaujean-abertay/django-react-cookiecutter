@@ -11,7 +11,8 @@ import {
   hideAllInputErrorMessages,
   displayInputErrorMessages,
   displayServerErrorMessagesInErrorDiv,
-  toggleSubmitButton
+  enableFormButton,
+  disableFormButton
 } from "../../../utils/formUtils";
 import {
   USERNAME,
@@ -73,7 +74,7 @@ export default (
       password1: formInputValues.password,
       password2: formInputValues.password
     };
-    toggleSubmitButton(SUBMIT);
+    disableFormButton(SUBMIT);
     (document.getElementById(FORM_ERROR_DIV_ID) as HTMLElement).innerHTML = "";
     reduxActionDispatch(addPendingApiCall(API_REGISTRATION_URL));
     axios
@@ -89,8 +90,9 @@ export default (
       .catch((error: any) =>
         displayServerErrorMessagesInErrorDiv(FORM_ERROR_DIV_ID, error.response)
       )
-      .finally(() =>
-        reduxActionDispatch(removePendingApiCall(API_REGISTRATION_URL))
-      );
+      .finally(() =>{
+        enableFormButton(SUBMIT);
+        reduxActionDispatch(removePendingApiCall(API_REGISTRATION_URL));
+      });
   }
 };

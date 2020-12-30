@@ -1,27 +1,20 @@
 import React, { useState } from "react";
-import axios from "axios";
-import * as Io from "react-icons/io";
 import { Form, Button, Card, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
 
-import FormWrapper from "../formWrapper";
+import FormWrapper from "../../../utils/elementWrappers/formWrapper";
 import { passwordResetRequest } from "../passwordReset/passwordResetLinks";
 import {
   handleInputChange,
-  displayServerErrorMessagesInErrorDiv,
-  displayInputErrorMessages,
-  hideAllInputErrorMessages
 } from "../../../utils/formUtils";
 import * as fieldNames from "./formFieldNames";
 import { register } from "../userAccessLinks";
-import { API_LOGIN_URL } from "../../../../constants/apiUrl";
-import { startUserSession } from "../../../../state/userAuthState/userAuthActions";
-import { clearAlerts } from "../../../../state/alertsState/alertActions";
-import { addPendingApiCall, removePendingApiCall } from "../../../../state/alertsState/alertActions";
+import { sendLoginRequest } from './formSubmission';
+import * as Io from "react-icons/io";
+import { ButtonSpinner } from "../../../utils/components/ButtonSpinner";
 
-interface UserLoginDetails {
+export interface UserLoginDetails {
   [fieldNames.PASSWORD]: string;
   [fieldNames.USERNAME]: string;
 }
@@ -42,56 +35,7 @@ export default () => {
           <Form
             onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
               e.preventDefault();
-              hideAllInputErrorMessages([
-                fieldNames.USERNAME,
-                fieldNames.PASSWORD
-              ]);
-              let errorMessageFieldnames = [];
-              if (userDetails[fieldNames.USERNAME].length === 0) {
-                errorMessageFieldnames.push(fieldNames.USERNAME);
-              }
-              if (userDetails[fieldNames.PASSWORD].length === 0) {
-                errorMessageFieldnames.push(fieldNames.PASSWORD);
-              }
-              if (errorMessageFieldnames.length > 0) {
-                displayInputErrorMessages(errorMessageFieldnames);
-                return;
-              }
-              const submitBtn = document.getElementById(
-                fieldNames.SUBMIT
-              ) as HTMLInputElement;
-              submitBtn.disabled = true;
-              (document.getElementById(
-                fieldNames.FORM_ERROR_DIV_ID
-              ) as HTMLElement).innerHTML = "";
-              dispatch(addPendingApiCall(API_LOGIN_URL));
-              axios
-                .post(API_LOGIN_URL, {
-                  username: userDetails[fieldNames.USERNAME],
-                  password: userDetails[fieldNames.PASSWORD]
-                })
-                .then(response => {
-                  dispatch(clearAlerts());
-                  dispatch(
-                    startUserSession(
-                      response.data.key,
-                      userDetails.login_username
-                    )
-                  );
-                  dispatch(push("/"));
-                })
-                .catch(error => {
-                  if (error["response"] !== undefined) {
-                    displayServerErrorMessagesInErrorDiv(
-                      fieldNames.FORM_ERROR_DIV_ID,
-                      error.response.data
-                    );
-                  }
-                  submitBtn.disabled = false;
-                })
-                .finally(() =>
-                  dispatch(removePendingApiCall(API_LOGIN_URL))
-                );
+              dispatch(sendLoginRequest(userDetails));
             }}
           >
             <Form.Group controlId="formEmail">
@@ -140,6 +84,7 @@ export default () => {
             </Form.Group>
             <Form.Group controlId="submit">
               <Button id={fieldNames.SUBMIT} variant="primary" type="submit">
+                <ButtonSpinner ButtonId={fieldNames.SUBMIT} />
                 Submit
               </Button>
               <div id={fieldNames.FORM_ERROR_DIV_ID}>

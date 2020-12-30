@@ -10,6 +10,7 @@ import * as fieldnames from "./fieldnames";
 import { PasswordResetForm } from "./passwordResetConfirm";
 import { API_PASSWORD_RESET_CONFIRM } from "../../../../../constants/apiUrl";
 import { passwordResetConfirmationUrl } from "../passwordResetLinks";
+import { disableFormButton, enableFormButton } from '../../../../utils/formUtils';
 import {
   setSuccessAlerts,
   addPendingApiCall,
@@ -64,13 +65,10 @@ export default (
       new_password1: formInputValues[fieldnames.NEW_PASSWORD_1],
       new_password2: formInputValues[fieldnames.NEW_PASSWORD_2]
     };
-    const submitBtn = document.getElementById(
-      fieldnames.SUBMIT
-    ) as HTMLInputElement;
-    submitBtn.disabled = true;
     (document.getElementById(
       fieldnames.FORM_ERROR_DIV_ID
     ) as HTMLElement).innerHTML = "";
+    disableFormButton(fieldnames.SUBMIT);
     addPendingApiCall(API_PASSWORD_RESET_CONFIRM);
     axios
       .post(API_PASSWORD_RESET_CONFIRM, passwordResetPayload)
@@ -87,7 +85,7 @@ export default (
         );
       })
       .finally(() => {
-        submitBtn.disabled = false;
+        enableFormButton(fieldnames.SUBMIT);
         removePendingApiCall(API_PASSWORD_RESET_CONFIRM);
       });
   }

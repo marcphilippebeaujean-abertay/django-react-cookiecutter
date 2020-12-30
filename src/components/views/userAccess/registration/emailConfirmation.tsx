@@ -4,7 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 
-import { toggleSubmitButton } from "../../../utils/formUtils";
+import { enableFormButton, disableFormButton } from "../../../utils/formUtils";
 import { API_CONFIRM_EMAIL } from "../../../../constants/apiUrl";
 import { login } from "../../userAccess/userAccessLinks";
 import {
@@ -26,7 +26,7 @@ export default () => {
           const pathUrl = window.location.pathname;
           const urlParts = pathUrl.split("/");
           const confirmationToken = urlParts[urlParts.length - 2];
-          toggleSubmitButton(buttonId);
+          disableFormButton(buttonId);
           const messageDiv = document.getElementById(
             messageDivId
           ) as HTMLElement;
@@ -49,8 +49,12 @@ export default () => {
                 `<small class="text-danger form-text">Your token is invalid/has expired.</small>`
               );
             })
-            .finally(() => dispatch(removePendingApiCall(API_CONFIRM_EMAIL)));
-        }}
+            .finally(() => {
+              dispatch(removePendingApiCall(API_CONFIRM_EMAIL));
+              enableFormButton(buttonId);
+        })
+        }
+      }
       >
         Confirm Email
       </Button>

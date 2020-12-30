@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const IconSize = 16;
 
-const IconWrapper = styled.span`
+const IconWrapperStyle = styled.span`
   display: inline-block;
   position: relative;
   bottom: 1.5px;
@@ -15,11 +15,13 @@ interface IconProps {
   AddMargin?: boolean | undefined;
 }
 
-export default (props: IconProps) => {
+const IconWrapper = (props: IconProps) => {
   const { AddMargin, Icon } = props;
   return (
-    <IconWrapper className={AddMargin === false ? "" : "mr-2"}>
+    <IconWrapperStyle className={AddMargin === false ? "" : "mr-2"}>
       <Icon size={props.Size === undefined ? IconSize : props.Size} />
-    </IconWrapper>
+    </IconWrapperStyle>
   );
 };
+
+export default IconWrapper;

@@ -4,7 +4,7 @@ import * as Io from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import FormWrapper from "../formWrapper";
+import FormWrapper from "../../../utils/elementWrappers/formWrapper";
 import { handleInputChange } from "../../../utils/formUtils";
 import handleSubmit from "./submission";
 import {
@@ -19,6 +19,7 @@ import {
   FORM_SUCCESS_ID
 } from "./fieldNames";
 import { login } from "../userAccessLinks";
+import { ButtonSpinner } from "../../../utils/components/ButtonSpinner";
 
 
 /**
@@ -163,6 +164,7 @@ export default () => {
             </Form.Group>
             <Form.Group controlId="submit">
               <Button variant="primary" type="submit" id={SUBMIT}>
+                <ButtonSpinner ButtonId={SUBMIT} />
                 Submit
               </Button>
               <div id={FORM_ERROR_DIV_ID}>{/* errors inserted here */}</div>

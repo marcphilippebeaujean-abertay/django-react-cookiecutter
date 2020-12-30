@@ -14,7 +14,9 @@ import {
   addPendingApiCall,
   removePendingApiCall
 } from "../../../../../state/alertsState/alertActions";
-import FormWrapper from "../../formWrapper";
+import FormWrapper from "../../../../utils/elementWrappers/formWrapper";
+import {ButtonSpinner} from "../../../../utils/components/ButtonSpinner"
+import { enableFormButton, disableFormButton } from '../../../../utils/formUtils';
 
 export default () => {
   const [email, setEmail] = useState("");
@@ -27,16 +29,13 @@ export default () => {
           <Form
             onSubmit={(event: React.ChangeEvent<HTMLFormElement>) => {
               event.preventDefault();
-              const submitBtn = document.getElementById(
-                SUBMIT
-              ) as HTMLInputElement;
               if (!emailRegex.test(email)) {
                 (document.getElementById(
                   EMAIL_FIELDNAME + "-error"
                 ) as HTMLElement).classList.remove("d-none");
                 return;
               }
-              submitBtn.disabled = true;
+              disableFormButton(SUBMIT);
               dispatch(addPendingApiCall(API_PASSWORD_RESET_REQUEST));
               axios
                 .post(API_PASSWORD_RESET_REQUEST, {
@@ -52,7 +51,7 @@ export default () => {
                 })
                 .catch(e => console.log(e))
                 .finally(() => {
-                  submitBtn.disabled = false;
+                  enableFormButton(SUBMIT);
                   dispatch(removePendingApiCall(API_PASSWORD_RESET_REQUEST));
                 });
             }}
@@ -84,6 +83,7 @@ export default () => {
             </Form.Group>
             <Form.Group controlId="submit" className="m-0">
               <Button variant="primary" type="submit" id={SUBMIT}>
+                <ButtonSpinner ButtonId={SUBMIT} />
                 Submit
               </Button>
               <div id={FORM_ERROR_DIV_ID}>{/* errors inserted here */}</div>

@@ -5,7 +5,8 @@ import * as fieldnames from "./fieldnames";
 import handleSubmit from "./formSubmission";
 import { handleInputChange } from "../../../../utils/formUtils";
 import { useDispatch } from "react-redux";
-import FormWrapper from "../../formWrapper";
+import FormWrapper from "../../../../utils/elementWrappers/formWrapper";
+import {ButtonSpinner} from "../../../../utils/components/ButtonSpinner"
 
 export interface PasswordResetForm {
   [fieldnames.NEW_PASSWORD_1]: string;
@@ -69,6 +70,7 @@ export default () => {
             </Form.Group>
             <Form.Group controlId="submit">
               <Button variant="primary" type="submit" id={fieldnames.SUBMIT}>
+                <ButtonSpinner ButtonId={fieldnames.SUBMIT} />
                 Submit
               </Button>
               <div id={fieldnames.FORM_ERROR_DIV_ID}>
