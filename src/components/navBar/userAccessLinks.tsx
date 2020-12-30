@@ -2,13 +2,11 @@ import React from "react";
 import { Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch } from "react-redux";
-import { push } from "connected-react-router";
 
 import { sendLogoutRequest } from "../../state/userAuthState/userAuthActions";
 import { useUserAuthSelector } from "../../state/typedSelectors";
 
 import * as linkItems from "../views/userAccess/userAccessLinks";
-import { homeLink } from "../views/homePage";
 
 import {
   ShowOnlyWhenLoggedIn,
@@ -40,7 +38,6 @@ export default () => {
         <Nav.Link
           onClick={() => {
             dispatch(sendLogoutRequest(authToken));
-            dispatch(push(homeLink.link));
           }}
         >
           {linkItems.logout.icon}

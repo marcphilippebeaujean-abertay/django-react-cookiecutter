@@ -7,6 +7,9 @@ import {
   TENANT_DOMAIN_KEY
 } from "../../constants/localStorageKeys";
 import { API_LOGOUT_URL } from "../../constants/apiUrl";
+import { addPendingApiCall, removePendingApiCall } from '../alertsState/alertActions';
+import { push } from "connected-react-router";
+import { homeLink } from '../../components/views/homePage';
 
 export const startUserSession = (
   authToken: string,
@@ -42,6 +45,7 @@ const endUserSession = (): types.EndUserSessionAction => {
 export const sendLogoutRequest = (authToken: string | null) => {
   return async (dispatch: Function) => {
     if (authToken !== null) {
+      dispatch(addPendingApiCall(API_LOGOUT_URL));
       axios
         .post(
           API_LOGOUT_URL,
@@ -50,7 +54,11 @@ export const sendLogoutRequest = (authToken: string | null) => {
             headers: { Authorization: `Token ${authToken}` }
           }
         )
-        .catch(e => console.error(e));
+        .catch(e => console.error(e))
+        .finally(() => {
+          dispatch(removePendingApiCall(API_LOGOUT_URL));
+          dispatch(push(homeLink.link));
+        })
     }
     dispatch(endUserSession());
   };
