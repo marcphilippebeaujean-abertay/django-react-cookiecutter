@@ -16,7 +16,7 @@ django-cors-headers==3.2.0
 django-rest-auth==0.9.5
 django-ses==0.8.14
 django-smtp-ssl==1.0
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 environ==1.0
 feedparser==5.2.1
 future==0.18.2
