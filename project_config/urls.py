@@ -7,9 +7,9 @@ urlpatterns = [
     path('api/', include('rest_framework.urls')),
     path('api/rest-auth/', include('rest_auth.urls')),
     path('api/rest-auth/registration/', include('rest_auth.registration.urls')),
-    path('api/real-admin/', admin.site.urls),
+    path('real-admin/', admin.site.urls),
 
-    re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
+    re_path(r'(?!real-admin)^.*', TemplateView.as_view(template_name='index.html')),
 
     url(r'^', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls')),
