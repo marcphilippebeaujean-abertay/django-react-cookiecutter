@@ -2,9 +2,9 @@ import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir))
 
-SHARED_APPS = ['tenant_schemas', 'tenants', 'corsheaders']
+SHARED_APPS = ['tenant_schemas', 'customer', 'corsheaders']
 
-TENANT_MODEL = "tenants.Client"
+TENANT_MODEL = "customer.Client"
 
 TENANT_APPS = [
     'django.contrib.admin',
